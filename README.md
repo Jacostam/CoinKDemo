@@ -1,5 +1,11 @@
 # COINK Demo
 
+- Se realizo el projecto para manejo de base de datos MYSQL.
+
+- Para la conexion a la base de datos se debe agregar en el archivo appsettings.json
+```
+    "MySqlConnection": "Server={server};Database={Database};User={useer};Password={Password};"
+```
 # SCRIP DE BASE DE DATOS
 ## CREACIONDE TABLAS 
 
