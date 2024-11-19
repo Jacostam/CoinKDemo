@@ -104,7 +104,7 @@ BEGIN
         SIGNAL SQLSTATE '45000' 
             SET MESSAGE_TEXT = 'El CityId no existe en la tabla Cities.';
     ELSE
-        -- Insertar el pedido si CustomerID es válido
+        -- Insertar el usuario si city_id es válido
          INSERT INTO `users` (`name`, `phone`, `city_id`, `address`) VALUES (name, phone,city_id, address);
     END IF;           
 END
@@ -113,7 +113,14 @@ END
 ```
 CREATE PROCEDURE `delete_user`(IN user_id INT)
 BEGIN
-    UPDATE `users` SET `status` = '0' WHERE `id` = user_id;
+ IF NOT EXISTS (SELECT 1 FROM users WHERE id = user_id) THEN
+        SIGNAL SQLSTATE '45000' 
+            SET MESSAGE_TEXT = 'El user_id no existe en la tabla Users.';
+    ELSE
+        -- Elimina el usuario si id es válido
+        UPDATE `users` SET `status` = '0' WHERE `id` = user_id;
+    END IF; 
+    
 END 
 ```
 
